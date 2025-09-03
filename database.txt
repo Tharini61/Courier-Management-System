@@ -1,0 +1,38 @@
+create database courier;
+use courier;
+
+create table employee(employee_name varchar(40),
+gender varchar(20),
+contact_no varchar(20),
+email varchar(50), 
+qualification varchar(65),
+experience varchar(45),
+address varchar(155),
+username varchar(50) primary key,
+password varchar(50));
+
+create table parcel(parcel_id int primary key,
+collected_employee varchar(50),
+sender_name varchar(50),
+sender_phone varchar(20),
+sender_address varchar(150), 
+receiver_name varchar(50),
+receiver_phone varchar(50),
+receiver_address varchar(250),
+description varchar(500),
+parcel_weight varchar(50),
+amount varchar(30),
+collected_date varchar(40),
+expected_delivery varchar(40),
+parcel_image varchar(50));
+
+create table update_status(parcel_id varchar(40),
+employee_reporting varchar(40),
+current_location varchar(80),
+update_date varchar(40),
+status varchar(30));
+
+create table feedback(username varchar(50),
+feedback varchar(200),
+feedback_date varchar(30),
+feedback_rank varchar(10));

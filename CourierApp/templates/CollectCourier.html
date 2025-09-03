@@ -1,0 +1,156 @@
+{% load static %}
+<html>
+<head>
+<title>Courier Management System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function validate(formObj)
+	{
+	if(formObj.t1.value.length==0)
+	{
+	alert("Please Enter Sender name");
+	formObj.t1.focus();
+	return false;
+	}
+	if(formObj.t2.value.length==0)
+	{
+	alert("Please Enter Sender Phone No");
+	formObj.t2.focus();
+	return false;
+	}
+	if(isNaN(formObj.t2.value)){
+		alert("Contact No must be numeric");
+		formObj.t2.focus();
+		return false;
+	}
+	if(formObj.t3.value.length==0)
+	{
+	alert("Please Enter Sender Address");
+	formObj.t3.focus();
+	return false;
+	}
+	if(formObj.t4.value.length==0)
+	{
+	alert("Please Enter Receiver Name");
+	formObj.t4.focus();
+	return false;
+	}
+	if(formObj.t5.value.length==0)
+	{
+	alert("Please Enter Receiver Phone");
+	formObj.t5.focus();
+	return false;
+	}
+	if(isNaN(formObj.t5.value)){
+		alert("Receiver Phone No must be numeric");
+		formObj.t5.focus();
+		return false;
+	}
+	if(formObj.t6.value.length==0)
+	{
+	alert("Please Enter Receiver Address");
+	formObj.t6.focus();
+	return false;
+	}
+	if(formObj.t7.value.length==0)
+	{
+	alert("Please Enter Courier Description");
+	formObj.t7.focus();
+	return false;
+	}
+	if(formObj.t8.value.length==0)
+	{
+	alert("Please Enter Courier Weight");
+	formObj.t8.focus();
+	return false;
+	}
+	if(formObj.t9.value.length==0)
+	{
+	alert("Please Enter Courier Amount");
+	formObj.t9.focus();
+	return false;
+	}
+	if(formObj.t10.value.length==0)
+	{
+	alert("Please choose expected delivery");
+	formObj.t10.focus();
+	return false;
+	}
+	if(formObj.t11.value.length==0)
+	{
+	alert("Please Upload Courier Image");
+	formObj.t11.focus();
+	return false;
+	}
+	return true;
+	}
+	</script>
+	<script language="javascript" type="text/javascript" src="{% static 'datetimepicker.js' %}">
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Courier Management System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+       <ul>      
+     <li><a href="{% url 'CollectCourier' %}"><font size="3" color="black">Collect New Courier</a></li>
+	 <li><a href="{% url 'UpdateCourier' %}"><font size="3" color="black">Update Courier Status</a></li>
+	 <li><a href="{% url 'ViewCurrentStatus' %}"><font size="3" color="black">View Current Courier Status</a></li>
+	 <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>         
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="915" height="286" alt="" /></div>
+      				<center>
+<form name="f1" method="post" action={% url 'CollectCourierAction' %} enctype="multipart/form-data" onsubmit="return validate(this);">
+{% csrf_token %}<br/>
+   <h2><b>Add New Courier Screen</b></h2>
+   
+	<font size="" color="red"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="30%" >
+			 <tr><td><font size='' color="black"><b>Sender&nbsp;Name</b></td>
+			 <td><input type="text" name="t1" style="font-family: Comic Sans MS" size="25"></td></tr>
+         
+		  
+			<tr><td><font size='' color="black"><b>Sender&nbsp;Phone</b></td>
+			<td><input name="t2" type="Text" size="15"></td></td></tr>
+
+		    
+		   <tr><td><font size='' color="black"><b>Sender&nbsp;Address</b></td><td><input type="text" name="t3" style="font-family: Comic Sans MS" size="60"/></td></tr>
+
+          <tr><td><font size='' color="black"><b>Receiver&nbsp;Name</b></td><td><input name="t4" type="Text" size="40"></td></td></tr>
+
+		  <tr><td><font size='' color="black"><b>Receiver&nbsp;Phone</b></td><td><input name="t5" type="Text" size="15"></td></td></tr>
+
+		  <tr><td><font size='' color="black"><b>Receiver&nbsp;Address</b></td><td><input name="t6" type="Text" size="60"></td></td></tr>
+		 
+
+		   <tr><td><font size='' color="black"><b>Courier&nbsp;Description</b></td><td><input name="t7" type="Text" size="60"></td></td></tr>
+		 <tr><td><font size='' color="black"><b>Courier&nbsp;Weight</b></td><td><input name="t8" type="text" size="20"></td></td></tr>
+
+		 <tr><td><font size='' color="black"><b>Amount</b></td><td><input name="t9" type="text" size="20"></td></td></tr>
+
+		 <tr><Td><font size="3" color="black"><b>Expected&nbsp;Delivery</td><td>
+<input name="t10" type="Text" id="demo1" maxlength="25" size="20" class="c2" ><a href="javascript:NewCal('demo1','ddmmyyyy',false,24)"><img src="{% static 'cal.gif' %}" width="16" height="16" border="0" alt="Pick a date"></a>
+	  		<span class="descriptions"></span>
+</td></tr>	
+
+<tr><td><font size='' color="black"><b>Courier&nbsp;Imaget</b></td><td><input name="t11" type="file" size="20"></td></td></tr>
+
+			<tr><td></td><td><input type="submit" value="Submit"></td>
+			</table>
+				</div>	
+					
+				</div>
+				
+					
+	</body>
+</html>
